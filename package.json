@@ -1,0 +1,15 @@
+{
+  "name": "api_pi",
+  "version": "1.0.0",
+  "description": "In this repo we're creating an API as a final work of the course of Programming Language",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
