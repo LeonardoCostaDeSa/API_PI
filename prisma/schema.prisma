@@ -14,12 +14,12 @@ datasource db {
 }
 
 model Produto {
-  id           Int       @id @default(autoincrement())
+  id           Int         @id @default(autoincrement())
   descricao    String
   classe       String
   unidade      String
   fornecedorId Int
-  fornecedor   Fornecedor @relation(fields: [fornecedorId], references: [id])
+  fornecedor   Fornecedor  @relation(fields: [fornecedorId], references: [id])
   imagemUrl    String
   ncm          String
   orcamentos   Orcamento[]
@@ -35,15 +35,15 @@ model Fornecedor {
 }
 
 model Orcamento {
-  id           Int       @id @default(autoincrement())
+  id           Int              @id @default(autoincrement())
   data         DateTime
   produtoId    Int
-  produto      Produto   @relation(fields: [produtoId], references: [id])
+  produto      Produto          @relation(fields: [produtoId], references: [id])
   quantidade   Int
   vlrUnid      Float
   vlrTotal     Float
   servicoId    Int
-  servico      Servico   @relation(fields: [servicoId], references: [id])
+  servico      Servico          @relation(fields: [servicoId], references: [id])
   prestservId  Int
   prestador    PrestadorServico @relation(fields: [prestservId], references: [id])
   vlrServ      Float
@@ -54,41 +54,44 @@ model Orcamento {
 }
 
 model Servico {
-  id        Int        @id @default(autoincrement())
-  descricao String
-  tipo      String
-  periodo   String
-  orcamentos Orcamento[]
-  prestadores PrestadorServico[]}
+  id          Int                @id @default(autoincrement())
+  descricao   String
+  tipo        String
+  periodo     String
+  orcamentos  Orcamento[]
+  prestadores PrestadorServico[]
+}
 
 model PrestadorServico {
-  id       Int      @id @default(autoincrement())
-  nome     String
+  id        Int         @id @default(autoincrement())
+  nome      String
   servicoId Int
-  servico  Servico @relation(fields: [servicoId], references: [id])
-  tipo     String}
+  servico   Servico     @relation(fields: [servicoId], references: [id])
+  tipo      String
+  Orcamento Orcamento[]
+}
 
 model Projeto {
-  id        Int      @id @default(autoincrement())
+  id        Int       @id @default(autoincrement())
   orcId     Int
   orcamento Orcamento @relation(fields: [orcId], references: [id])
   clienteId Int
-  cliente   Cliente @relation(fields: [clienteId], references: [id])
+  cliente   Cliente   @relation(fields: [clienteId], references: [id])
   data      DateTime
   concluido String
-  }
+}
 
 model Cliente {
-  id        Int      @id @default(autoincrement())
-  nome      String
-  cnpjCpf   String
-  tipo      String
-  rua       String
-  numero    Int
-  bairro    String
-  cep       String
-  cidade    String
-  estado    String
-  telefone  String
-  projetos  Projeto[]
+  id       Int       @id @default(autoincrement())
+  nome     String
+  cnpjCpf  String
+  tipo     String
+  rua      String
+  numero   Int
+  bairro   String
+  cep      String
+  cidade   String
+  estado   String
+  telefone String
+  projetos Projeto[]
 }
