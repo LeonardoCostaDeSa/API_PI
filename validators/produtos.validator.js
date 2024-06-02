@@ -1,31 +1,27 @@
 import { body, param } from 'express-validator'
 
 export const createClienteValidator = [
-    body('nome').isString().withMessage('Nome inválido'),
-    body('cnpjCpf').isString().withMessage('CNPJ/CPF inválido'),
-    body('tipo').isString().withMessage('Tipo inválido'),
-    body('rua').isString().withMessage('Rua inválida'),
-    body('numero').isInt().withMessage('Número inválido'),
-    body('bairro').isString().withMessage('Bairro inválido'),
-    body('cep').isString().isPostalCode('BR').withMessage('CEP inválido'),
-    body('cidade').isString().withMessage('Cidade inválida'),
-    body('estado').isString().isLength({ min: 2, max: 2 }).withMessage('Estado inválido'),
-    body('telefone').isString().isMobilePhone('pt-BR').withMessage('Telefone inválido')
+    body('descricao').isString().withMessage('Descrição inválida'),
+    body('classe').isString().withMessage('Classe inválida'),
+    body('unidade').isInt().withMessage('Unidade inválida'), // verificar se é String ou algo relacionado a Number (alterei de String para Int)
+    body('fornecedorId').isString().withMessage('ID de fornecedor inválido'), // verificar tipo isString
+    body('fornecedor').isString().withMessage('Fornecedor inválido'),
+    body('imagemUrl').isString().withMessage('Imagem inválida'), // verificar tipo isString > Imagem ou URL
+    body('ncm').isString().isPostalCode('BR').withMessage('NCM inválido'), // verificar tipo isString
+    body('orcamentos').isString().withMessage('Orçamento inválido'),
   ];
 
 export const updateClienteValidator = [
-    body('nome').isString().withMessage('Nome inválido'),
-    body('cnpjCpf').isString().withMessage('CNPJ/CPF inválido'),
-    body('tipo').isString().withMessage('Tipo inválido'),
-    body('rua').isString().withMessage('Rua inválida'),
-    body('numero').isInt().withMessage('Número inválido'),
-    body('bairro').isString().withMessage('Bairro inválido'),
-    body('cep').isString().isPostalCode('BR').withMessage('CEP inválido'),
-    body('cidade').isString().withMessage('Cidade inválida'),
-    body('estado').isString().isLength({ min: 2, max: 2 }).withMessage('Estado inválido'),
-    body('telefone').isString().isMobilePhone('pt-BR').withMessage('Telefone inválido') 
+    body('descricao').isString().withMessage('Descrição inválida'),
+    body('classe').isString().withMessage('Classe inválida'),
+    body('unidade').isInt().withMessage('Unidade inválida'), // verificar se é String ou algo relacionado a Number (alterei de String para Int)
+    body('fornecedorId').isString().withMessage('ID de fornecedor inválido'), // verificar tipo isString
+    body('fornecedor').isString().withMessage('Fornecedor inválido'),
+    body('imagemUrl').isString().withMessage('Imagem inválida'), // verificar tipo isString > Imagem ou URL
+    body('ncm').isString().isPostalCode('BR').withMessage('NCM inválido'), // verificar tipo isString
+    body('orcamentos').isString().withMessage('Orçamento inválido'),
 ]
 
-export const deleteClienteValidator = [
+export const deleteProdutoValidator = [
   param('id').isInt().withMessage("Id inválido"),
-]//validator produtos
+]
