@@ -5,7 +5,7 @@ export const createFornecedorValidator = [
     body('telefone').isString().isLength({ min: 12, max: 14 }).withMessage('Telefone inválido'),
     body('descricao').isString().withMessage('Descrição inválida'),
     body('endereco').isString().withMessage('Endereço inválido'),
-    body('orcamento').isString().withMessage('Orçamento inválido'),
+    body('produtos').isString().withMessage('Produto inválido'),
   ];
 
 export const updateFornecedorValidator = [
@@ -13,7 +13,7 @@ export const updateFornecedorValidator = [
     body('telefone').isString().isLength({ min: 12, max: 14 }).withMessage('Telefone inválido'),
     body('descricao').isString().withMessage('Descrição inválida'),
     body('endereco').isString().withMessage('Endereço inválido'),
-    body('orcamento').isString().withMessage('Orçamento inválido'),
+    body('produtos').isString().withMessage('Produto inválido'),
 ]
 export const deleteFornecedorValidator = [
   param('id').isInt().withMessage("Id inválido"),
