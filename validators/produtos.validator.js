@@ -1,6 +1,6 @@
 import { body, param } from 'express-validator'
 
-export const createClienteValidator = [
+export const createProdutosValidator = [
     body('descricao').isString().withMessage('Descrição inválida'),
     body('classe').isString().withMessage('Classe inválida'),
     body('unidade').isInt().withMessage('Unidade inválida'), // verificar se é String ou algo relacionado a Number (alterei de String para Int)
@@ -11,7 +11,7 @@ export const createClienteValidator = [
     body('orcamentos').isString().withMessage('Orçamento inválido'),
   ];
 
-export const updateClienteValidator = [
+export const updateProdutosValidator = [
     body('descricao').isString().withMessage('Descrição inválida'),
     body('classe').isString().withMessage('Classe inválida'),
     body('unidade').isInt().withMessage('Unidade inválida'), // verificar se é String ou algo relacionado a Number (alterei de String para Int)
@@ -22,6 +22,6 @@ export const updateClienteValidator = [
     body('orcamentos').isString().withMessage('Orçamento inválido'),
 ]
 
-export const deleteProdutoValidator = [
+export const deleteProdutosValidator = [
   param('id').isInt().withMessage("Id inválido"),
 ]
