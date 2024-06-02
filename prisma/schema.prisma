@@ -29,7 +29,7 @@ model Fornecedor {
   id          Int       @id @default(autoincrement())
   razaoSocial String
   telefone    String
-  descricao   String
+  descricao   String 
   endereco    String
   produtos    Produto[]
 }
