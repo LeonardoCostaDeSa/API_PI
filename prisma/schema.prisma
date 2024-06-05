@@ -14,89 +14,96 @@ datasource db {
 }
 
 model Produto {
-  id           Int         @id @default(autoincrement())
-  descricao    String
-  classe       String
-  unidade      String
-  fornecedorId Int
-  fornecedor   Fornecedor  @relation(fields: [fornecedorId], references: [id])
-  imagemUrl    String
-  ncm          String
-  orcamentos   Orcamento[]
+  id                 Int                  @id @default(autoincrement())
+  nome               String
+  descricao          String
+  classe             String
+  unidade            String
+  imagemUrl          String
+  ncm                String
+  produto_fornecedor Produto_Fornecedor[]
+  orcamento_produto  Orcamento_Produto[]
 }
 
 model Fornecedor {
-  id          Int       @id @default(autoincrement())
-  razaoSocial String
-  telefone    String
-  descricao   String 
-  endereco    String
-  produtos    Produto[]
+  id                 Int                  @id @default(autoincrement())
+  razaoSocial        String
+  telefone           String
+  descricao          String
+  endereco           String
+  produto_fornecedor Produto_Fornecedor[]
+}
+
+model Produto_Fornecedor {
+  id            Int        @id @default(autoincrement())
+  produto_id    Int
+  produto       Produto    @relation(fields: [produto_id], references: [id])
+  fornecedor_id Int
+  fornecedor    Fornecedor @relation(fields: [fornecedor_id], references: [id])
 }
 
 model Orcamento {
-  id           Int              @id @default(autoincrement())
-  data         DateTime
-  produtoId    Int
-  produto      Produto          @relation(fields: [produtoId], references: [id])
-  quantidade   Int
-  vlrUnid      Float
-  vlrTotal     Float
-  servicoId    Int
-  servico      Servico          @relation(fields: [servicoId], references: [id])
-  prestservId  Int
-  prestador    PrestadorServico @relation(fields: [prestservId], references: [id])
-  vlrServ      Float
-  imagemAntes  String
-  imagemDepois String
-  aprovado     String
-  projetos     Projeto[]
+  id                Int                 @id @default(autoincrement())
+  data              String
+  quantidade        Int
+  vlrUnid           Float
+  vlrTotal          Float
+  vlrServ           Float
+  imagemAntes       String
+  imagemDepois      String
+  aprovado          String
+  projeto_id        Int
+  projeto           Projeto             @relation(fields: [projeto_id], references: [id])
+  cliente_id        Int
+  cliente           Cliente             @relation(fields: [cliente_id], references: [id])
+  orcamento_produto Orcamento_Produto[]
 }
 
-model Servico {
-  id          Int                @id @default(autoincrement())
-  descricao   String
-  tipo        String
-  periodo     String
-  orcamentos  Orcamento[]
-  prestadores PrestadorServico[]
+model Orcamento_Produto {
+  id           Int       @id @default(autoincrement())
+  orcamento_id Int
+  orcamento    Orcamento @relation(fields: [orcamento_id], references: [id])
+  produto_id   Int
+  produto      Produto   @relation(fields: [produto_id], references: [id])
 }
 
 model PrestadorServico {
-  id        Int         @id @default(autoincrement())
-  nome      String
-  servicoId Int
-  servico   Servico     @relation(fields: [servicoId], references: [id])
-  tipo      String
-  Orcamento Orcamento[]
+  id                Int                 @id @default(autoincrement())
+  nome              String
+  tipo              String
+  projeto_prestador Projeto_Prestador[]
 }
 
 model Projeto {
-  id        Int       @id @default(autoincrement())
-  orcId     Int
-  orcamento Orcamento @relation(fields: [orcId], references: [id])
-  clienteId Int
-  cliente   Cliente   @relation(fields: [clienteId], references: [id])
-  data      DateTime
-  concluido String
+  id                Int                 @id @default(autoincrement())
+  cliente_id        Int
+  cliente           Cliente             @relation(fields: [cliente_id], references: [id])
+  data              String
+  concluido         String
+  orcamento         Orcamento[]
+  projeto_prestador Projeto_Prestador[]
+}
+
+model Projeto_Prestador {
+  id          Int              @id @default(autoincrement())
+  projeto_id  Int
+  projeto     Projeto          @relation(fields: [projeto_id], references: [id])
+  pretador_id Int
+  prestador   PrestadorServico @relation(fields: [projeto_id], references: [id])
 }
 
 model Cliente {
-  id       Int       @id @default(autoincrement())
-  nome     String
-  cnpjCpf  String
-  tipo     String
-  rua      String
-  numero   Int
-  bairro   String
-  cep      String
-  cidade   String
-  estado   String
-  telefone String
-  projetos Projeto[]
+  id        Int         @id @default(autoincrement())
+  nome      String
+  cnpjCpf   String
+  tipo      String
+  rua       String
+  numero    Int
+  bairro    String
+  cep       String
+  cidade    String
+  estado    String
+  telefone  String
+  projetos  Projeto[]
+  orcamento Orcamento[]
 }
-
-// Teste git JV
-// Teste commit Augusto
-// Teste commit Renato
-// Teste commit Adriana 30-05
