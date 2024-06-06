@@ -1,5 +1,5 @@
 import { Router } from "express"
-import ProjetoController from "../controllers/projeto.controller.js"
+import ProjetoController from "../../controllers/projeto.controller.js"
 import { createProjetoValidator, updateProjetoValidator, deleteProjetoValidator } from "../validators/projeto.validator.js"
 
 const projeto = Router()

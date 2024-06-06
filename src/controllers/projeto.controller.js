@@ -1,4 +1,4 @@
-import Projeto from '../models/projeto.model.js'
+import Projeto from '../src/models/projeto.model.js'
 import { validationResult } from 'express-validator'
 
 export default class ProjetoController{
