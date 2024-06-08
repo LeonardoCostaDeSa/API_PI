@@ -1,4 +1,5 @@
 import Produto from '../models/produto.model.js'
+import Produto_Fornecedor from '../models/produto_fornecedor.model.js'
 import { validationResult } from 'express-validator'
 
 export default class ProdutoController{
@@ -14,7 +15,19 @@ export default class ProdutoController{
         const product = await Produto.create({
           data: req.body
         })
-        res.json(customer)
+
+        const lista_Fornecedores = req.body.fornecedores
+        
+        lista_Fornecedores.forEach(fornecedor => {
+          const productFornecedor = Produto_Fornecedor.create({
+            data: {
+              fornecedor_id: fornecedor,
+              produto_id: product.id
+            }
+          })
+        })
+
+        res.json(product)
       }
     
       static async show(req, res) {
