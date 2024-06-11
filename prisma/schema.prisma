@@ -45,15 +45,14 @@ model Produto_Fornecedor {
 model Orcamento {
   id                Int                 @id @default(autoincrement())
   data              String
-  quantidade        Int
-  vlrUnid           Float
-  vlrTotal          Float
+  vlrProd           Float
   vlrServ           Float
+  vlrTotal          Float
   imagemAntes       String
   imagemDepois      String
-  aprovado          String
-  projeto_id        Int
-  projeto           Projeto             @relation(fields: [projeto_id], references: [id])
+  status            String
+  projeto_id        Int?
+  projeto           Projeto?            @relation(fields: [projeto_id], references: [id])
   cliente_id        Int
   cliente           Cliente             @relation(fields: [cliente_id], references: [id])
   orcamento_produto Orcamento_Produto[]
@@ -65,13 +64,8 @@ model Orcamento_Produto {
   orcamento    Orcamento @relation(fields: [orcamento_id], references: [id])
   produto_id   Int
   produto      Produto   @relation(fields: [produto_id], references: [id])
-}
-
-model PrestadorServico {
-  id                Int                 @id @default(autoincrement())
-  nome              String
-  tipo              String
-  projeto_prestador Projeto_Prestador[]
+  vlrUnit      Float
+  quantidade   Int
 }
 
 model Projeto {
@@ -79,17 +73,9 @@ model Projeto {
   cliente_id        Int
   cliente           Cliente             @relation(fields: [cliente_id], references: [id])
   data              String
-  concluido         String
+  status            String
   orcamento         Orcamento[]
   projeto_prestador Projeto_Prestador[]
-}
-
-model Projeto_Prestador {
-  id          Int              @id @default(autoincrement())
-  projeto_id  Int
-  projeto     Projeto          @relation(fields: [projeto_id], references: [id])
-  pretador_id Int
-  prestador   PrestadorServico @relation(fields: [projeto_id], references: [id])
 }
 
 model Cliente {
@@ -106,4 +92,20 @@ model Cliente {
   telefone  String
   projetos  Projeto[]
   orcamento Orcamento[]
+}
+
+model PrestadorServico {
+  id                Int                 @id @default(autoincrement())
+  nome              String
+  tipo              String
+  telefone          String
+  projeto_prestador Projeto_Prestador[]
+}
+
+model Projeto_Prestador {
+  id         Int              @id @default(autoincrement())
+  projeto_id Int
+  projeto    Projeto          @relation(fields: [projeto_id], references: [id])
+  prestador_id Int
+  prestador  PrestadorServico @relation(fields: [prestador_id], references: [id])
 }
