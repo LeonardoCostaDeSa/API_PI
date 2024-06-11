@@ -1,20 +1,20 @@
-import { body, param } from 'express-validator'
+import { body, param } from "express-validator"
 
-export const createFornecedorValidator = [
-    body('razaoSocial').isString().withMessage('Razao inválida'),
-    body('telefone').isString().isLength({ min: 12, max: 14 }).withMessage('Telefone inválido'),
-    body('descricao').isString().withMessage('Descrição inválida'),
-    body('endereco').isString().withMessage('Endereço inválido'),
-    body('produtos').isString().withMessage('Produto inválido'),
-  ];
-
-export const updateFornecedorValidator = [
-    body('razaoSocial').isString().withMessage('Razao inválida'),
-    body('telefone').isString().isLength({ min: 12, max: 14 }).withMessage('Telefone inválido'),
-    body('descricao').isString().withMessage('Descrição inválida'),
-    body('endereco').isString().withMessage('Endereço inválido'),
-    body('produtos').isString().withMessage('Produto inválido'),
+export const fornecedorValidator = [
+    body('razaoSocial').isString().withMessage('Razão Social é obrigatório'),
+    body('telefone').isString().withMessage('Telefone é obrigatório'),
+    body('descricao').isString().withMessage('Descrição é obrigatória'),
+    body('endereco').isString().withMessage('Endereço é obrigatório')
 ]
-export const deleteFornecedorValidator = [
-  param('id').isInt().withMessage("Id inválido"),
+
+export const fornecedorUpdateValidator = [
+    param('id').isInt().withMessage('ID é obrigatório'),
+    body('razaoSocial').isString().withMessage('Razão Social é obrigatório'),
+    body('telefone').isString().withMessage('Telefone é obrigatório'),
+    body('descricao').isString().withMessage('Descrição é obrigatória'),
+    body('endereco').isString().withMessage('Endereço é obrigatório')
+]
+
+export const fornecedorIdValidator = [
+    param('id').isInt().withMessage('ID é obrigatório')
 ]
