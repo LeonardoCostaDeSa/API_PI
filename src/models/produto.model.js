@@ -1,5 +1,5 @@
-//model produtos
 import { PrismaClient } from '@prisma/client'
+
 const prisma = new PrismaClient()
 
-export default prisma.Produto
+export default prisma.produto

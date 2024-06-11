@@ -1,27 +1,24 @@
-import { body, param } from 'express-validator'
+import { body, param } from "express-validator"
 
-export const createProdutosValidator = [
-    body('descricao').isString().withMessage('Descrição inválida'),
-    body('classe').isString().withMessage('Classe inválida'),
-    body('unidade').isInt().withMessage('Unidade inválida'),
-    body('fornecedorId').isInt().withMessage('ID de fornecedor inválido'),
-    body('fornecedor').isString().withMessage('Fornecedor inválido'),
-    body('imagemUrl').isString().withMessage('Imagem inválida'),
-    body('ncm').isString().withMessage('BR').withMessage('NCM inválido'),
-    body('orcamentos').isString().withMessage('Orçamento inválido'),
-  ];
-
-export const updateProdutosValidator = [
-    body('descricao').isString().withMessage('Descrição inválida'),
-    body('classe').isString().withMessage('Classe inválida'),
-    body('unidade').isInt().withMessage('Unidade inválida'),
-    body('fornecedorId').isInt().withMessage('ID de fornecedor inválido'),
-    body('fornecedor').isString().withMessage('Fornecedor inválido'),
-    body('imagemUrl').isString().withMessage('Imagem inválida'),
-    body('ncm').isString().withMessage('BR').withMessage('NCM inválido'),
-    body('orcamentos').isString().withMessage('Orçamento inválido'),
+export const produtoValidator = [
+    body('nome').isString().withMessage('Nome é obrigatório'),
+    body('descricao').isString().withMessage('Descricação é obrigatório'),
+    body('classe').isString().withMessage('Classe é obrigatório'),
+    body('unidade').isString().withMessage('Unidade é obrigatório'),
+    body('imagemUrl').isString().withMessage('Caminho da imagem é obrigatório'),
+    body('ncm').isString().withMessage('ncm é obrigatório')
 ]
 
-export const deleteProdutosValidator = [
-  param('id').isInt().withMessage("Id inválido"),
+export const produtoUpdateValidator = [
+    param('id').isInt().withMessage('ID é obrigatório'),
+    body('nome').isString().withMessage('Nome é obrigatório'),
+    body('descricao').isString().withMessage('Descricação é obrigatório'),
+    body('classe').isString().withMessage('Classe é obrigatório'),
+    body('unidade').isString().withMessage('Unidade é obrigatório'),
+    body('imagemUrl').isString().withMessage('Caminho da imagem é obrigatório'),
+    body('ncm').isString().withMessage('ncm é obrigatório') 
+]
+
+export const produtoIdValidator = [
+    param('id').isInt().withMessage('ID é obrigatório ')
 ]
