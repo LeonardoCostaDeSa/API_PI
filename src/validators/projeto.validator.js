@@ -1,18 +1,18 @@
 import { body, param } from 'express-validator'
 
-
-export const createProjetoValidator = [
-    param('id').isInt().withMessage("ID Inválido"),
+export const projetoValidator = [
+    body('cliente_id').isInt().withMessage("ID do cliente é obrigatório"),
     body('data').isString().withMessage("Data inválida"),
-    body('concluido').isString().withMessage("Conteúdo inválido"),
+    body('status').isString().withMessage("Status é obrigatório")
 ]
 
-export const updateProjetoValidator = [
+export const projetoUpdateValidator = [
     param('id').isInt().withMessage("ID Inválido"),
+    body('cliente_id').isInt().withMessage("ID do cliente é obrigatório"),
     body('data').isString().withMessage("Data inválida"),
-    body('concluido').isString().withMessage("Conteúdo inválido"),
+    body('status').isString().withMessage("Status é obrigatório")
 ]
 
-export const deleteProjetoValidator = [
-    param('id').isInt().withMessage("ID Inválido"),
+export const projetoIdValidator = [
+    param('id').isInt().withMessage("ID Inválido")
 ]

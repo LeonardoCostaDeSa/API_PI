@@ -1,4 +1,5 @@
-import Projeto from '../src/models/projeto.model.js'
+import Projeto from '../models/projeto.model.js'
+import PrestadorServico from '../models/prestadorServico.model.js'
 import { validationResult } from 'express-validator'
 
 export default class ProjetoController{
@@ -22,12 +23,42 @@ export default class ProjetoController{
         const projeto = await Projeto.findUnique({
             where: {
                 id: parseInt(req.params.id)
+            },
+            include: {
+                orcamento: true
+            },
+            include: {
+                projeto_prestador: {
+                    select: {
+                        prestador_id: true
+                    }
+                }    
             }
         })
         if (!projeto) {
             return res.status(404).json({ message: 'Projeto não encontrado' })
         }
-        res.json(projeto)
+
+        const prestadorIds = projeto.projeto_prestador.map(p => p.prestador_id)
+
+        const prestadores = await PrestadorServico.findMany({
+            where: {
+                id: {
+                    in: prestadorIds
+                }
+            },
+            select : {
+                nome: true   
+            }
+        })
+
+        const resposta = {
+            ...projeto,
+            projeto_prestador: prestadorIds,
+            prestadores: prestadores.map(p => p.nome)
+        }
+
+        res.json(resposta)
     }
 
     static async update (req, res){
@@ -70,6 +101,6 @@ export default class ProjetoController{
                 id: parseInt(req.params.id)
             }
         })
-        res.status(204).json({ message: 'Projeto deletado com sucesso' })
+        res.json({ message: 'Projeto deletado com sucesso' })
     }
 }
