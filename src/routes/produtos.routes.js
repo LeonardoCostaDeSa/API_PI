@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import ProdutoController from '../controllers/produto.controller.js'
-import { produtoValidator, produtoUpdateValidator, produtoIdValidator } from '../validators/produto.validator.js'
+import { produtoValidator, produtoUpdateValidator, produtoIdValidator } from '../validators/produtos.validator.js'
 
 const router = Router()
 
