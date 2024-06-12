@@ -1,4 +1,3 @@
-//
 import PrestadorServico from '../models/prestadorServico.model.js'
 import Projeto from '../models/projeto.model.js'
 import { validationResult } from 'express-validator'
