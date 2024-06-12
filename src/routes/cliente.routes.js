@@ -1,16 +1,15 @@
 import { Router } from 'express'
-import ClienteController from '../controllers/cliente.controller.js'
-import { 
-    createClienteValidator, updateClienteValidator, deleteClienteValidator 
-    } from '../validators/cliente.validator.js'
+import ProjetoController from '../controllers/projeto.controller.js'
+import { projetoValidator, projetoUpdateValidator, projetoIdValidator } from '../validators/projeto.validator.js'
 
 const router = Router()
 
-router.get('/', ClienteController.index)
-router.post('/', createClienteValidator, ClienteController.create)
-router.get('/:id', ClienteController.show)
-router.put('/:id', updateClienteValidator, ClienteController.update)
-router.delete('/:id', deleteClienteValidator, ClienteController.delete)
-// ...
+router.get('/', ProjetoController.index)
+router.post('/', projetoValidator, ProjetoController.create)
+router.get('/:id', projetoIdValidator, ProjetoController.show)
+router.put('/:id', projetoUpdateValidator, ProjetoController.update)
+router.delete('/:id', projetoIdValidator, ProjetoController.delete)
 
 export default router
+
+

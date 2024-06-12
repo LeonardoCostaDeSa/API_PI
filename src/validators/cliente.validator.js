@@ -27,5 +27,5 @@ export const updateClienteValidator = [
 ]
 
 export const deleteClienteValidator = [
-  param('id').isInt().withMessage("Id inválido"),
+  param('id').isInt().withMessage("Id inválido"),
 ]
