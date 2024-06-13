@@ -1,7 +1,7 @@
 import Produto_Fornecedor from '../models/produto_fornecedor.model.js'
 import { validationResult } from 'express-validator'
 
-export default class ProdutoController {
+export default class Produto_FornecedorController {
     static async index(req, res){
         const produto_fornecedor = await Produto_Fornecedor.findMany()
         res.json(produto_fornecedor)
