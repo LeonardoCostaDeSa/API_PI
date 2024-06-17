@@ -14,6 +14,7 @@ export const clienteValidator = [
 ];
 
 export const clienteUpdateValidator = [
+  param('id').isInt().withMessage("Id inválido"),
   body('nome').isString().withMessage('Nome inválido'),
   body('cnpjCpf').isString().withMessage('CNPJ/CPF inválido'),
   body('tipo').isString().withMessage('Tipo inválido'),
